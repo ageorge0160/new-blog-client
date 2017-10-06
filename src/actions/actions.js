@@ -1,27 +1,40 @@
 import fetch from 'isomorphic-fetch';
 import Api from '../api/Api'
+import {resetPostForm} from './PostForm'
 
 const API_URL = process.env.REACT_APP_API_URL;
-
-
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const requestPosts = () => {
-  return {type: REQUEST_POSTS}
-}
-
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const receivePosts = posts => {
-  return {
-    type: RECEIVE_POSTS,
-    posts,
+export const getPosts = () => {
+  return (dispatch) => {
+    return fetch(`${API_URL}/posts`)
+    .then(response => response.json())
+    .then(posts => this.setState({ posts }))
   }
 }
 
-export const ADD_POST = 'ADD_POST'
+const setPosts =(posts) => {
+  return {
+    type: 'GET_POSTS_SUCCESS',
+    posts
+  }
+}
+// // export const REQUEST_POSTS = 'REQUEST_POSTS'
+// export const requestPosts = () => {
+//   return {type: REQUEST_POSTS}
+// }
+//
+// // export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+// export const receivePosts = posts => {
+//   return {
+//     type: RECEIVE_POSTS,
+//     posts
+//   }
+// }
+
+// export const ADD_POST = 'ADD_POST'
 export const addPost = (data) => {
   return {
-    type: ADD_POST,
-    data
+    type: 'ADD_POST_SUCCESS',
+    post: data
   }
 }
 
@@ -39,7 +52,7 @@ export const loadPosts = () => {
   }
 }
 
-export const createPost= (data, routerHistory) => {
+export const createPost= (data) => {
   return dispatch => {
         dispatch(requestPosts());
         return fetch(`${API_URL}/posts`, {
@@ -47,15 +60,12 @@ export const createPost= (data, routerHistory) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                data
-            })
+            body: JSON.stringify({post: data })
         })
             .then(response => response.json())
             .then(post => {
-                dispatch(receivePosts());
                 dispatch(addPost(post));
-                routerHistory.replace(`/posts/${post.id}`);
+                dispatch(resetPostForm());
             })
     };
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost } from '../actions/actions';
-
+import {updatePostFormData} from '../actions/PostForm'
 class NewPostForm extends React.Component {
 
   constructor(props) {
@@ -28,9 +27,11 @@ class NewPostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    let data = this.state;
-    this.props.onFormSubmit(data, this.props.history);
+    const { name, value } = event.target;
+    const currentPostFormData = Object.assign({}, this.props.postFormData, {
+      [name]: value
+    })
+    this.props.updatePostFormData(currentPostFormData)
   }
 
 render() {
