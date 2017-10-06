@@ -9,9 +9,12 @@ export default (state= initialState, action) => {
       return Object.assign({}, state, {loading:true})
     case 'RECEIVE_POSTS':
         return Object.assign({},state,{loading: false, posts: action.payload })
-    case 'ADD_POST': {
-      return state.concat(action.post)
-    }
+    case 'ADD_POST':
+        return{
+
+          post: state.post.concat(action.post)
+        }
+
     default:
       return state;
   }

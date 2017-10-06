@@ -4,7 +4,7 @@ import Posts from '../components/Posts'
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state ={

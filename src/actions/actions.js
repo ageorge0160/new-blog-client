@@ -48,7 +48,6 @@ export const loadPosts = () => {
 }
 
 export const createPost= (data) => {
-  debugger
   return dispatch => {
         return fetch(`${API_URL}/posts`, {
             method: 'POST',
