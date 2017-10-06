@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {updatePostFormData} from '../actions/PostForm'
 import {createPost} from '../actions/actions'
 
 class NewPostForm extends React.Component {
@@ -27,7 +26,6 @@ class NewPostForm extends React.Component {
         title: this.state.title,
         content: this.state.content
     }
-
     this.props.createPost(data)
   }
 
@@ -82,8 +80,6 @@ const mapStateToProps = state => {
   }
 }
 
-
 export default connect(mapStateToProps, {
-  updatePostFormData,
   createPost
 })(NewPostForm);
