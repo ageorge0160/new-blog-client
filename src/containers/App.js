@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Posts from './Posts'
+import '../App.css';
+import Posts from '../components/Posts'
 
 const API_URL = process.env.REACT_APP_API_URL;
 
