@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Home = () => {
-  return (
+const Home = () =>
     <div className="welcome-container">
       <h4 className="paragraph">Thank you for visiting. Enjoy the collection of outdoor articles!</h4>
       <div className='button_div'>
@@ -12,7 +11,5 @@ const Home = () => {
       </form>
       </div>
     </div>
-  );
-};
 
 export default Home;
