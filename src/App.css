@@ -56,7 +56,9 @@
   padding-left: 40px;
   text-align: center;
 }
-
+.link {
+  color: white;
+}
 .button {
   background: #555;
   align: center;
