@@ -14,30 +14,27 @@ class NewPostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // componentDidMount() {
+  //   this.setState({
+  //     ...this.props.post
+  //   })
+  // }
+
   handleChange(event) {
-    let name = event.target.name
-    this.setState({
-    [name]: event.target.value
+    const { name, value } = event.target;
+    const currentPostFormData = Object.assign({}, this.props.postFormData, {
+      [name]: value
     })
+    this.setState({
+      [name]: value
+    })
+    this.props.updatePostFormData(currentPostFormData)
   }
 
 
   handleSubmit(event) {
     event.preventDefault();
-    let data = {
-      post: {
-        title: this.state.title,
-        content: this.state.content
-      }
-    }
-
-    this.props.createPost(data)
-
-    this.setState({
-      title: '',
-      content: ''
-    })
-    window.location.href='/'
+    this.props.createPost(this.props)
   }
 
 render() {
@@ -51,7 +48,7 @@ render() {
               <input
                 type="text"
                 name="title"
-                value={this.state.title}
+                value={this.props.title}
                 onChange={this.handleChange}
               />
             </label>
@@ -69,7 +66,7 @@ render() {
               id="content"
               cols="30"
               rows="10"
-              value={this.state.content}
+              value={this.props.content}
               onChange={this.handleChange}>
             </textarea>
           </div>
@@ -85,6 +82,14 @@ render() {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    postFormData: state.postFormData
+  }
+}
 
 
-export default NewPostForm;
+export default connect(mapStateToProps, {
+  updatePostFormData,
+  createPost
+})(NewPostForm);
