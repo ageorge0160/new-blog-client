@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  text-align: left;
+  padding: 50px;
 }
 
 .App-logo {
@@ -8,10 +9,23 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #247;
+  height:115px;
   padding: 20px;
+  margin-bottom: 10px;
   color: white;
+  text-align: center;
+  font-family: "Verdana", Helvetica, sans-serif;
+}
+
+.App-footer {
+  background-color: #247;
+  height:50px;
+  padding: 10px;
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  font-family: "Verdana", Helvetica, sans-serif;
 }
 
 .App-title {
@@ -25,4 +39,73 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.welcome-container {
+  margin: 200px;
+}
+.title{
+  padding: 20px;
+  text-align: center;
+}
+
+.paragraph {
+  padding-right: 40px;
+  padding-left: 40px;
+  text-align: center;
+}
+
+.button {
+  background: #555;
+  align: center;
+  color: white;
+  font-size: large;
+}
+
+.PostPage {
+  text-align: left;
+  padding: 50px, 50px;
+}
+
+.button_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar {
+  color: white;
+  border: none;
+  background: transparent !important;
+
+  &:hover {
+    background: transparent !important;
+  }
+
+  .icon-bar {
+    width: 22px;
+    transition: all 0.2s;
+  }
+  .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+  }
+  .middle-bar {
+    opacity: 0;
+  }
+  .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+  }
+
+  &.collapsed {
+    .top-bar {
+      transform: rotate(0);
+    }
+    .middle-bar {
+      opacity: 1;
+    }
+    .bottom-bar {
+      transform: rotate(0);
+    }
+  }
 }
