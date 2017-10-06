@@ -14,27 +14,29 @@ class NewPostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     ...this.props.post
-  //   })
-  // }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    const currentPostFormData = Object.assign({}, this.props.postFormData, {
-      [name]: value
-    })
+    let title = event.target.title;
+    let content = event.target.content;
     this.setState({
-      [name]: value
+      title: event.target.value,
+      content: event.target.value
     })
-    this.props.updatePostFormData(currentPostFormData)
   }
 
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.createPost(this.props)
+    let post = {
+      post: {
+        title: this.state.title,
+        content: this.state.content
+      }
+    }
+    this.props.createPost(post)
+    this.setState({
+      ...this.props.post
+    })
   }
 
 render() {
@@ -84,12 +86,9 @@ render() {
 
 const mapStateToProps = state => {
   return {
-    postFormData: state.postFormData
+    post: this.state
   }
 }
 
 
-export default connect(mapStateToProps, {
-  updatePostFormData,
-  createPost
-})(NewPostForm);
+export default connect(mapStateToProps)(NewPostForm);
