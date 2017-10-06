@@ -42,10 +42,39 @@ render() {
     <div className="NewPostFormDiv jumbotron">
       <h3>Create a new post:</h3>
       <form className="new-post-form" onSubmit={this.handleSubmit}>
-          <div><label htmlFor="title">Title: <input type="text" name="title" value={this.state.title} onChange={this.handleChangeTitle}/></label></div>
-          <div><label htmlFor="content">Content:</label></div>
-          <div><textarea name="content" id="content" cols="30" rows="10" value={this.state.content} onChange={this.handleChangeContent}></textarea></div>
-          <div><input type="submit" name="confirm" value="Create Post"/></div>
+          <div>
+            <label htmlFor="title">
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChangeTitle}
+              />
+            </label>
+          </div>
+
+          <div>
+            <label htmlFor="content">
+              Content:
+            </label>
+          </div>
+
+          <div>
+            <textarea
+              name="content"
+              id="content"
+              cols="30"
+              rows="10"
+              value={this.state.content}
+              onChange={this.handleChangeContent}>
+            </textarea>
+          </div>
+
+          <div>
+            <input type="submit" name="confirm" value="Create Post"/>
+          </div>
+          
         </form>
       </div>
     )
