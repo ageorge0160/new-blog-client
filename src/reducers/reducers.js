@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {fetchPosts} from '../action/actions'
+import {fetchPosts} from '../actions/actions'
 
 export default combineReducers({
   posts: fetchPosts
