@@ -1,11 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk';
-import postReducer from './reducers/postReducer'
 import postFormData from './reducers/postFormData'
 
 const reducers = combineReducers([
-  postFormData,
-  postReducer
+  postFormData
 ])
 
 const middleware = [thunk];
