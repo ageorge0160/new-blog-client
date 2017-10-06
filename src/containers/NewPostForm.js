@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {updatePostFormData} from '../actions/PostForm'
-class NewPostForm extends React.Component {
+import {createPost} from '../actions/actions'
 
+class NewPostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,29 +14,30 @@ class NewPostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    this.setState({
-      ...this.props.post
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     ...this.props.post
+  //   })
+  // }
 
   handleChange(event) {
     const { name, value } = event.target;
-    this.setState({
+    const currentPostFormData = Object.assign({}, this.props.postFormData, {
       [name]: value
     })
-  }
-
-  handleSubmit(event) {
-    const { name, value } = event.target;
-    const currentPostFormData = Object.assign({}, this.props.postFormData, {
+    this.setState({
       [name]: value
     })
     this.props.updatePostFormData(currentPostFormData)
   }
 
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.createPost(this.props)
+  }
+
 render() {
-  const { title, content } = this.props.postFormData
   return(
     <div className="NewPostFormDiv jumbotron">
       <h3>Create a new post:</h3>
@@ -46,7 +48,7 @@ render() {
               <input
                 type="text"
                 name="title"
-                value={title}
+                value={this.props.title}
                 onChange={this.handleChange}
               />
             </label>
@@ -64,7 +66,7 @@ render() {
               id="content"
               cols="30"
               rows="10"
-              value={content}
+              value={this.props.content}
               onChange={this.handleChange}>
             </textarea>
           </div>
@@ -87,4 +89,7 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(NewPostForm);
+export default connect(mapStateToProps, {
+  updatePostFormData,
+  createPost
+})(NewPostForm);

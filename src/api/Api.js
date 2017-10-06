@@ -6,14 +6,14 @@ export default class Api {
       headers: headers,
     })
       .then(res => res.json())
-      .then(data => data.posts)
+      .then(respJson => respJson.posts)
       .catch(err => {
         console.error(err)
         return err
       })
   }
 
-  static createPost(data) {
+  static createPost(post) {
     let headers = Object.assign({}, this.requestHeaders, {
       "Accepts": "application/json",
       "Content-type": "application/json"
@@ -21,7 +21,7 @@ export default class Api {
     return fetch("/posts.json", {
       method: "POST",
       headers: headers,
-      body: JSON.stringify(data)
+      body: JSON.stringify(post)
     })
       .then(res => res.json())
       .then(data => data.post)

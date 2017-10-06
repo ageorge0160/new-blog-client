@@ -3,6 +3,7 @@ import Api from '../api/Api'
 import {resetPostForm} from './PostForm'
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 export const getPosts = () => {
   return (dispatch) => {
     return fetch(`${API_URL}/posts`)
@@ -11,26 +12,20 @@ export const getPosts = () => {
   }
 }
 
-const setPosts =(posts) => {
+export const REQUEST_POSTS = 'REQUEST_POSTS'
+export const requestPosts = () => {
+  return {type: REQUEST_POSTS}
+}
+
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const receivePosts = posts => {
   return {
-    type: 'GET_POSTS_SUCCESS',
+    type: RECEIVE_POSTS,
     posts
   }
 }
-// // export const REQUEST_POSTS = 'REQUEST_POSTS'
-// export const requestPosts = () => {
-//   return {type: REQUEST_POSTS}
-// }
-//
-// // export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-// export const receivePosts = posts => {
-//   return {
-//     type: RECEIVE_POSTS,
-//     posts
-//   }
-// }
 
-// export const ADD_POST = 'ADD_POST'
+export const ADD_POST = 'ADD_POST'
 export const addPost = (data) => {
   return {
     type: 'ADD_POST_SUCCESS',
@@ -53,6 +48,7 @@ export const loadPosts = () => {
 }
 
 export const createPost= (data) => {
+  debugger
   return dispatch => {
         dispatch(requestPosts());
         return fetch(`${API_URL}/posts`, {
