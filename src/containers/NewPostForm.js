@@ -3,41 +3,38 @@ import { connect } from 'react-redux';
 import { createPost } from '../actions/actions';
 
 class NewPostForm extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       title: '',
       content: ''
     }
-    this.handleChangeTitle = this.handleChangeTitle.bind(this)
-    this.handleChangeContent = this.handleChangeContent.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChangeTitle(event) {
+  componentDidMount() {
     this.setState({
-      title: event.target.title
+      ...this.props.post
     })
   }
 
-  handleChangeContent(event) {
+  handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
-      title: event.target.content
+      [name]: value
     })
   }
 
   handleSubmit(event) {
     event.preventDefault();
     let data = this.state;
-    const { createPost } = this.props;
-    createPost(data)
-    this.setState({
-      title: '',
-      content: ''
-    })
+    this.props.onFormSubmit(data, this.props.history);
   }
 
 render() {
+  const { title, content } = this.props.postFormData
   return(
     <div className="NewPostFormDiv jumbotron">
       <h3>Create a new post:</h3>
@@ -48,8 +45,8 @@ render() {
               <input
                 type="text"
                 name="title"
-                value={this.state.title}
-                onChange={this.handleChangeTitle}
+                value={title}
+                onChange={this.handleChange}
               />
             </label>
           </div>
@@ -66,15 +63,15 @@ render() {
               id="content"
               cols="30"
               rows="10"
-              value={this.state.content}
-              onChange={this.handleChangeContent}>
+              value={content}
+              onChange={this.handleChange}>
             </textarea>
           </div>
 
           <div>
             <input type="submit" name="confirm" value="Create Post"/>
           </div>
-          
+
         </form>
       </div>
     )
@@ -82,4 +79,11 @@ render() {
   }
 }
 
-export default NewPostForm
+const mapStateToProps = state => {
+  return {
+    postFormData: state.postFormData
+  }
+}
+
+
+export default connect(mapStateToProps)(NewPostForm);

@@ -1,17 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import Api from '../api/Api'
-export const fetchPosts = () => {
-  // debugger
-  return (dispatch) => {
-    dispatch({type: 'REQUEST_POSTS'});
-  return fetch('http://localhost:3001/posts.json')
-  .then(response => { console.log(response)
-    return response.json()
-  }).then(responseJson => {
-    dispatch({type: 'RECEIVE_POSTS', payload: responseJson.posts})
-  })
-  }
-}
+
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const requestPosts = () => {
@@ -48,21 +39,23 @@ export const loadPosts = () => {
   }
 }
 
-const createPost= (data) => {
-    let headers = Object.assign({}, this.requestHeaders, {
-      "Accepts": "application/json",
-      "Content-type": "application/json"
-    })
-    return fetch("/posts.json", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(data => data.post)
-      .catch(err => {
-        console.error(err)
-        return err
-      })
-
-  }
+export const createPost= (data, routerHistory) => {
+  return dispatch => {
+        dispatch(requestPosts());
+        return fetch(`${API_URL}/posts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                data
+            })
+        })
+            .then(response => response.json())
+            .then(post => {
+                dispatch(receivePosts());
+                dispatch(addPost(post));
+                routerHistory.replace(`/posts/${post.id}`);
+            })
+    };
+};
