@@ -26,7 +26,7 @@ class NewPostForm extends React.Component {
         title: this.state.title,
         content: this.state.content
     }
-    this.props.createPost(data)
+    this.props.createPost(data, this.props.history)
   }
 
 render() {
