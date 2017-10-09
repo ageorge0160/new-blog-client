@@ -14,6 +14,27 @@ return updatedPosts
 }
 
 
+export const addLikeSuccess = (data) => {
+  return {
+    type: 'ADD_LIKE_SUCCESS',
+    post: data
+  }
+}
+
+
+export const addLike = (data) => {
+  debugger
+  return (dispatch) => {
+    return fetch(`${API_URL}/posts/${data.postId}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ data })
+      .then(response => response.json())
+      .then(post => dispatch({type: 'ADD_LIKE_SUCCESS', payload: post}))
+    })
+  }
+}
+
 export const createPost= (data, history) => {
   return dispatch => {
     return fetch(`${API_URL}/posts`, {
