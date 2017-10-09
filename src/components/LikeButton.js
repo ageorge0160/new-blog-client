@@ -7,7 +7,7 @@ class LikeButton extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      likes: this.props.likes || 0
+      post: this.props.post
     }
     console.log(this.props)
     this.handleClick = this.handleClick.bind(this)
@@ -18,6 +18,7 @@ class LikeButton extends React.Component{
       likes: this.state.likes + 1
     })
     let data = {
+      postId: this.props.post.id,
       likes: this.state.likes
     }
     this.props.addLike(data)
@@ -35,7 +36,7 @@ class LikeButton extends React.Component{
 }
 
 const mapStateToProps = state => {
-  return this.state
+  return state
 }
 
 

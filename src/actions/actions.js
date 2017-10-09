@@ -23,7 +23,7 @@ export const createPost= (data, history) => {
 export const addLike = (data) => {
   debugger
   return (dispatch) => {
-    return fetch(`${API_URL}/posts/${data.post.id}`, {
+    return fetch(`${API_URL}/posts/${data.postId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ data })
