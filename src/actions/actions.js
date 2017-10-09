@@ -2,6 +2,17 @@ import fetch from 'isomorphic-fetch';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+export function modifyPost(posts, postId, updatePostCallback) {
+const updatedPosts = posts.map(post => {
+  if (post.id !== postId){
+    return post;
+  }
+  const updatedPost = updatePostCallback(post)
+  return updatedPost;
+})
+return updatedPosts
+}
+
 
 export const createPost= (data, history) => {
   return dispatch => {
@@ -20,33 +31,16 @@ export const createPost= (data, history) => {
   };
 };
 
-export const addLike = (data) => {
-  debugger
-  return (dispatch) => {
-    return fetch(`${API_URL}/posts/${data.postId}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ data })
-      .then(response => response.json())
-      .then(post => dispatch({type: 'ADD_LIKE_SUCCESS', payload: post}))
-    })
-  }
-}
-
-export const addLikeSuccess = (data) => {
-  return {
-    type: 'ADD_LIKE_SUCCESS',
-    post: data
-  }
-}
 
 export const getPosts = () => {
   return (dispatch) => {
-
     return fetch(`${API_URL}/posts`)
     .then(response => response.json())
-    .then(posts => dispatch({ type: 'FETCH_POSTS_COMPLETE', payload: posts }))}
-
+    .then(posts => dispatch({
+      type: 'FETCH_POSTS_COMPLETE',
+      payload: posts
+    })
+  )}
 }
 
 export const addPost = (data) => {

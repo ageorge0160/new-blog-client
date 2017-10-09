@@ -9,7 +9,7 @@ class Posts extends React.Component {
   componentDidMount() {
     this.props.getPosts()
   }
-  
+
   render() {
     return (
       <div className="PostPage">
