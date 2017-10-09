@@ -29,9 +29,9 @@ export const addLike = (data) => {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ data })
+    })
       .then(response => response.json())
       .then(post => dispatch({type: 'ADD_LIKE_SUCCESS', payload: post}))
-    })
   }
 }
 
