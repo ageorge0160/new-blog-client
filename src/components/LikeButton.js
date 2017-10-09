@@ -1,3 +1,8 @@
+import React from 'react';
+import CountDetail from './CountDetail';
+import {connect} from 'react-redux'
+import {addLike} from '../actions/actions'
+
 class LikeButton extends React.Component{
   constructor(props) {
     super(props);
