@@ -7,16 +7,12 @@ import {addLike} from '../actions/actions';
 class LikeButton extends React.Component{
 
   handleClick() {
-	let newPost = this.props.post
-	newPost.likes += 1
-    this.setState({post: newPost}, ()=> {
 	  let data = {
-    	postId: this.props.post.id,
+    postId: this.props.post.id,
 		post: this.props.post
       }
       this.props.addLike(data)
-    })
-  }
+    }
 
 
   render() {
@@ -35,3 +31,11 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, {addLike})(LikeButton);
+
+
+
+
+
+// let newPost = this.props.post
+// newPost.likes += 1
+//   this.setState({post: newPost}, ()=> {

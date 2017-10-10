@@ -8,12 +8,17 @@ export const addLikeSuccess = (data) => {
     post: data
   }
 }
-
+export function increment(index) {
+  return {
+    type: 'INCREMENT_LIKES',
+    index
+  }
+}
 
 export const addLike = (data) => {
   const postData = {
     "post": {
-      "likes": data.post.likes
+      "likes": data.post.likes + 1
     }
   }
   return (dispatch) => {
