@@ -35,7 +35,6 @@ export default connect(mapStateToProps, {addLike})(LikeButton);
 
 
 
-
 // let newPost = this.props.post
 // newPost.likes += 1
 //   this.setState({post: newPost}, ()=> {

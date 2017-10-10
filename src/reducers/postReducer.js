@@ -4,8 +4,8 @@ export default (state = [], action) => {
         console.log(action)
         return action.payload;
       case 'INCREMENT_LIKES':
-        console.log('inc')
-      break;
+        console.log('hi')
+        break;
       default:
           return state;
     }
