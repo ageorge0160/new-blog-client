@@ -11,7 +11,6 @@ export const addLikeSuccess = (data) => {
 
 
 export const addLike = (data) => {
-  // debugger
   const postData = {
     "post": {
       "likes": data.post.likes

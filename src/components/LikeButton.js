@@ -1,25 +1,18 @@
 import React from 'react';
 import CountDetail from './CountDetail';
+import ButtonDetail from './ButtonDetail';
 import {connect} from 'react-redux';
 import {addLike} from '../actions/actions';
 
 class LikeButton extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      post: this.props.post
-    }
-    console.log(this.props)
-    this.handleClick = this.handleClick.bind(this)
-  }
 
   handleClick() {
-	let newPost = this.state.post
+	let newPost = this.props.post
 	newPost.likes += 1
     this.setState({post: newPost}, ()=> {
 	  let data = {
-    	postId: this.state.post.id,
-		post: this.state.post
+    	postId: this.props.post.id,
+		post: this.props.post
       }
       this.props.addLike(data)
     })
@@ -29,7 +22,7 @@ class LikeButton extends React.Component{
   render() {
     return (
       <div className='btn'>
-          <button onClick={this.handleClick}>Like</button >
+          <ButtonDetail click={this.handleClick.bind(this)} />
           <CountDetail likes={this.props.post.likes} />
       </div>
     )
