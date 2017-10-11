@@ -3,13 +3,11 @@ import PostTile from './PostTile'
 import {connect} from 'react-redux'
 import {getPosts} from '../actions/actions'
 
-
 class Posts extends React.Component {
 
   componentDidMount() {
     this.props.getPosts()
   }
-
 
   render() {
     return (

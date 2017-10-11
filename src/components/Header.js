@@ -5,6 +5,6 @@ const Header = () =>
   <div className="App-header">
     <h1>WELCOME TO MY BLOG</h1>
     <NavBar />
-  </div>;
+  </div>
 
 export default Header;

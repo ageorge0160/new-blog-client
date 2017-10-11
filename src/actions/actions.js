@@ -2,24 +2,20 @@ import fetch from 'isomorphic-fetch';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 export const addLike = (data) => {
-  const postData = {
-    "post": {
-      "likes": data.post.likes + 1
-    }
-  }
+  const postData = {"post": {"likes": data.post.likes + 1}}
   return (dispatch) => {
-    debugger
     return fetch(`${API_URL}/posts/${data.postId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(postData)
     })
-      .then(response => console.log(response.json()))
-
-      .then(post => dispatch({type: 'ADD_LIKE_SUCCESS', payload: post}))
-  }
+      .then(response => response.json())
+      .then(post => dispatch({
+        type: 'ADD_LIKE_SUCCESS',
+        payload: post
+      }))
+    }
 }
 
 export const createPost= (data, history) => {
@@ -38,7 +34,6 @@ export const createPost= (data, history) => {
     })
   };
 };
-
 
 export const getPosts = () => {
   return (dispatch) => {

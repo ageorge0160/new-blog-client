@@ -70,7 +70,6 @@ render() {
         </form>
       </div>
     )
-
   }
 }
 

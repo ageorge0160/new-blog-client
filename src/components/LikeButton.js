@@ -2,18 +2,17 @@ import React from 'react';
 import CountDetail from './CountDetail';
 import ButtonDetail from './ButtonDetail';
 import {connect} from 'react-redux';
-import {addLike} from '../actions/actions';
+import {addLike, getPosts} from '../actions/actions';
 
 class LikeButton extends React.Component{
 
   handleClick() {
 	  let data = {
-    postId: this.props.post.id,
-		post: this.props.post
-      }
-      this.props.addLike(data)
+      postId: this.props.post.id,
+  		post: this.props.post
     }
-
+    this.props.addLike(data)
+  }
 
   render() {
     return (
@@ -31,10 +30,3 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps, {addLike})(LikeButton);
-
-
-
-
-// let newPost = this.props.post
-// newPost.likes += 1
-//   this.setState({post: newPost}, ()=> {
