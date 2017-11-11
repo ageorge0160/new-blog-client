@@ -2,7 +2,7 @@ import React from 'react';
 import CountDetail from './CountDetail';
 import ButtonDetail from './ButtonDetail';
 import {connect} from 'react-redux';
-import {addLike, getPosts} from '../actions/actions';
+import {addLike} from '../actions/actions';
 
 class LikeButton extends React.Component{
 
