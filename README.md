@@ -8,6 +8,8 @@ Blog is a React and Redux based web application built with a Rails backend API. 
 
 To run a local version of this application, you must clone and fork both this repository and "new-blog-api" (https://github.com/ageorge0160/new-blog-api).
 
+Run ```npm install && npm start```. The back end needs to run in port 3000. 
+
 ## Contributing
 
 Please review the Code_of_Conduct.md file before contributing and to learn the details of making a pull request.
